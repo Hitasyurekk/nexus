@@ -5,40 +5,16 @@
 screen -S nexus
 
 
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y protobuf-compiler
-sudo apt install -y pkg-config
-sudo apt install libssl-dev
-mkdir -p ~/.nexus
+sudo apt update && sudo apt upgrade
+sudo apt install build-essential pkg-config libssl-dev git-all
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+. "$HOME/.cargo/env"
 
+reboot
+
+sudo apt install -y protobuf-compiler
 
 echo "PROVER_ID" > ~/.nexus/prover-id
-
-
 curl https://cli.nexus.xyz/ | sh
 
-```
-
-Hata alırsanız
-```
-curl https://cli.nexus.xyz/ | sh
-
-apt-get install -y build-essential
-
-apt-get update
-apt-get install -y protobuf-compiler
-
-
-```
-```
-Flag hatası alanlar için 
-
-cd /root/.nexus/network-api/clients/cli
-
-nano build.rs
-
-Eğer build.rs içinde protoc komutu veya prost_build / tonic_build fonksiyonları çağırılırken --experimental_allow_proto3_optional bayrağı eklenmişse, o satırı bulun ve ilgili bayrağı silin.
-
-cargo clean
-cargo build --release
 ```
